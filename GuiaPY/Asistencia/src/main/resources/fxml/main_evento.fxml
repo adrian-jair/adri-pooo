@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.asistencia.control.EventoController">
+   <children>
+      <VBox AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+         <children>
+            <AnchorPane>
+               <children>
+                  <Label layoutX="14.0" layoutY="14.0" text="Gestion de Eventos" />
+                  <Label layoutX="431.0" layoutY="31.0" text="Buscar Evento:" />
+                  <TextField layoutX="431.0" layoutY="54.0" />
+               </children></AnchorPane>
+            <AnchorPane>
+               <children>
+                  <HBox layoutX="95.0" layoutY="50.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                     <children>
+                        <AnchorPane>
+                           <children>
+                              <GridPane layoutX="14.0" layoutY="14.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="90.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="110.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Formulario" GridPane.columnSpan="2147483647">
+                                       <font>
+                                          <Font name="System Bold" size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="Nombre Evento" GridPane.rowIndex="1" />
+                                    <Label text="Fecha:" GridPane.rowIndex="2" />
+                                    <Label text="Tipo Evento:" GridPane.rowIndex="3" />
+                                    <Label text="Estado Evento" GridPane.rowIndex="4" />
+                                    <Label text="Cant. Reg.:" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin>
+                                    </Label>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registrar" text="Guardar" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancelar" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                       <GridPane.margin>
+                                          <Insets left="5.0" />
+                                       </GridPane.margin>
+                                    </Button>
+                                    <Label maxWidth="1.7976931348623157E308" text="Label" GridPane.columnSpan="2147483647" GridPane.rowIndex="6" />
+                                    <TextField fx:id="txtNombreEvent" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
+                                       <GridPane.margin>
+                                          <Insets right="5.0" />
+                                       </GridPane.margin>
+                                    </TextField>
+                                    <DatePicker fx:id="txtFecha" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <ComboBox fx:id="cbxTipoEvento" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                                    <ComboBox fx:id="cbxEstadoEvento" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                    <Spinner fx:id="spnCantidad" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                                    <HBox fx:id="idHBox" alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+                                       <children>
+                                          <Label contentDisplay="CENTER" maxHeight="1.7976931348623157E308" prefWidth="42.0" text="Hora:">
+                                             <padding>
+                                                <Insets left="5.0" />
+                                             </padding>
+                                          </Label>
+                                          <Spinner fx:id="spnHora" maxHeight="-Infinity" prefWidth="76.0" />
+                                          <Spinner fx:id="spnMinut" maxHeight="-Infinity" prefWidth="76.0">
+                                             <HBox.margin>
+                                                <Insets left="5.0" />
+                                             </HBox.margin>
+                                          </Spinner>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane>
+                           <children>
+                              <TableView fx:id="tableView" layoutX="8.0" layoutY="6.0" prefWidth="780.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </children></VBox>
+   </children>
+</AnchorPane>
