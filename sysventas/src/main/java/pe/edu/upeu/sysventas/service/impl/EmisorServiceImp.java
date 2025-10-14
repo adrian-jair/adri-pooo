@@ -6,6 +6,7 @@ import pe.edu.upeu.sysventas.model.Emisor;
 import pe.edu.upeu.sysventas.repository.EmisorRepository;
 import pe.edu.upeu.sysventas.repository.ICrudGenericoRepository;
 import pe.edu.upeu.sysventas.service.IEmisorService;
+
 @RequiredArgsConstructor
 @Service
 public class EmisorServiceImp extends CrudGenericoServiceImp<Emisor, Long> implements IEmisorService {
@@ -13,6 +14,6 @@ public class EmisorServiceImp extends CrudGenericoServiceImp<Emisor, Long> imple
 
     @Override
     protected ICrudGenericoRepository<Emisor, Long> getRepo() {
-        return null;
+        return emisorRepository;
     }
 }

@@ -10,7 +10,6 @@ import pe.edu.upeu.sysventas.service.ICompraDetalleService;
 @RequiredArgsConstructor
 @Service
 public class CompraDetalleServiceImp extends CrudGenericoServiceImp<CompraDetalle, Long> implements ICompraDetalleService {
-
     private final CompraDetalleRepository compraDetalleRepository;
 
     @Override

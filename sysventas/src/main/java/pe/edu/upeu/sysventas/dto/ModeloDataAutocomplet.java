@@ -14,6 +14,6 @@ public class ModeloDataAutocomplet {
 
     @Override
     public String toString() {
-        return nameDysplay+" "+idx+" " + otherData;
+        return nameDysplay + " " + idx + " " + otherData;
     }
 }

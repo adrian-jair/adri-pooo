@@ -10,9 +10,9 @@ import lombok.NoArgsConstructor;
 public class ComboBoxOption {
     String key;
     String value;
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return value;
     }
 }

@@ -11,6 +11,7 @@ import pe.edu.upeu.sysventas.service.IProveedorService;
 @Service
 public class ProveedorServiceImp extends CrudGenericoServiceImp<Proveedor, Long> implements IProveedorService {
     private final ProveedorRepository proveedorRepository;
+
     @Override
     protected ICrudGenericoRepository<Proveedor, Long> getRepo() {
         return proveedorRepository;

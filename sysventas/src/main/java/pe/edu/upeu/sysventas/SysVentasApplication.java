@@ -13,34 +13,37 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
-public class SysVentasApplication  extends Application {
+public class SysVentasApplication extends Application {
+    private ConfigurableApplicationContext context;
+    private Parent parent;
 
-	private ConfigurableApplicationContext context;
-	private Parent parent;
+    public static void main(String[] args) {
+        //SpringApplication.run(SysVentasApplication.class, args);
+        launch(args);
+    }
 
-	public static void main(String[] args) {
-		//SpringApplication.run(SysVentasApplication.class, args);
-		launch(args);
-	}
+    @Override
+    public void init() throws Exception {
+        SpringApplicationBuilder builder = new SpringApplicationBuilder(SysVentasApplication.class);
 
-	@Override
-	public void init() throws Exception {
-		SpringApplicationBuilder builder = new SpringApplicationBuilder(SysVentasApplication.class);
-		builder.application().setWebApplicationType(WebApplicationType.NONE);
-		context=builder.run(getParameters().getRaw().toArray(new String[0]));
+        builder.application().setWebApplicationType(WebApplicationType.NONE);
+        context = builder.run(getParameters().getRaw().toArray(new String[0]));
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/login.fxml"));
-		loader.setControllerFactory(context::getBean);
-		parent = loader.load();
-	}
+        FXMLLoader loader = new
+                FXMLLoader(getClass().getResource("/view/main_producto.fxml"));
+        loader.setControllerFactory(context::getBean);
+        parent = loader.load();
 
-	@Override
-	public void start(Stage stage) throws Exception {
-		Screen screen = Screen.getPrimary();
-		Rectangle2D bounds = screen.getVisualBounds();
-		stage.setScene(new Scene(parent, bounds.getWidth(),bounds.getHeight()-100));
-		stage.setTitle("SysVentas SysCenterLife");
-		stage.show();
-	}
+    }
 
+    @Override
+    public void start(Stage stage) throws Exception {
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+        stage.setScene(new Scene(parent, bounds.getWidth(),
+                bounds.getHeight() - 100));
+        stage.setTitle("SysVentas SysCenterLife");
+        stage.show();
+
+    }
 }

@@ -7,10 +7,9 @@ import pe.edu.upeu.sysventas.repository.CompraRepository;
 import pe.edu.upeu.sysventas.repository.ICrudGenericoRepository;
 import pe.edu.upeu.sysventas.service.ICompraService;
 
-@RequiredArgsConstructor
 @Service
-public class CompraServiceImp extends CrudGenericoServiceImp<Compra,Long> implements ICompraService {
-
+@RequiredArgsConstructor
+public class CompraServiceImp extends CrudGenericoServiceImp<Compra, Long> implements ICompraService {
     private final CompraRepository compraRepository;
 
     @Override
