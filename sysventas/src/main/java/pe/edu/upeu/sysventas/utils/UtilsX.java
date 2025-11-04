@@ -9,8 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Properties;
 
-public class
-UtilsX {
+public class UtilsX {
 
     public URL getFile(String ruta) {
         return this.getClass().getResource("/" + ruta);

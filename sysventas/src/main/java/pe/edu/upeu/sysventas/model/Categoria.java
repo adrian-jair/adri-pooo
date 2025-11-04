@@ -20,4 +20,3 @@ public class Categoria {
     @Column(name = "nombre", nullable = false, length = 60)
     private String nombre;
 }
-
