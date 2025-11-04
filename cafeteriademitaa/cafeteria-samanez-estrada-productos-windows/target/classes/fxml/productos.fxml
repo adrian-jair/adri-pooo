@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="pe.edu.cafeteria.controller.ProductoController" spacing="10">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+
+    <HBox spacing="8">
+        <Label text="Nombre:"/>
+        <TextField fx:id="txtNombre" promptText="Nombre del producto" prefWidth="220"/>
+        <Label text="Descripción:"/>
+        <TextField fx:id="txtDescripcion" promptText="Breve descripción" prefWidth="240"/>
+    </HBox>
+
+    <HBox spacing="8">
+        <Label text="Precio:"/>
+        <TextField fx:id="txtPrecio" promptText="Ej: 4.50" prefWidth="120"/>
+        <Label text="Stock:"/>
+        <TextField fx:id="txtStock" promptText="Ej: 10" prefWidth="100"/>
+    </HBox>
+
+    <HBox spacing="8">
+        <Button text="Agregar" onAction="#agregar"/>
+        <Button text="Editar" onAction="#editar"/>
+        <Button text="Eliminar" onAction="#eliminar"/>
+    </HBox>
+
+    <TableView fx:id="tablaProductos" onMouseClicked="#cargarSeleccion" prefHeight="260">
+        <columns>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="200"/>
+            <TableColumn fx:id="colDescripcion" text="Descripción" prefWidth="300"/>
+            <TableColumn fx:id="colPrecio" text="Precio" prefWidth="120"/>
+            <TableColumn fx:id="colStock" text="Stock" prefWidth="100"/>
+        </columns>
+    </TableView>
+</VBox>

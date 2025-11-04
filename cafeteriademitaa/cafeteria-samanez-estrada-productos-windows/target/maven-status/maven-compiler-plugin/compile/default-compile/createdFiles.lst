@@ -1,0 +1,4 @@
+pe\edu\cafeteria\ProductosApplication.class
+pe\edu\cafeteria\controller\ProductoController.class
+pe\edu\cafeteria\model\Producto.class
+pe\edu\cafeteria\service\ProductoService.class
