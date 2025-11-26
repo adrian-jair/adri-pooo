@@ -1,5 +1,10 @@
 package pe.edu.upeu.sysventas.controller;
 
+import com.github.anastaciocintra.escpos.EscPos;
+import com.github.anastaciocintra.escpos.EscPosConst;
+import com.github.anastaciocintra.escpos.Style;
+import com.github.anastaciocintra.escpos.barcode.QRCode;
+import com.github.anastaciocintra.output.PrinterOutputStream;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -20,7 +25,10 @@ import pe.edu.upeu.sysventas.model.Venta;
 import pe.edu.upeu.sysventas.model.VentaDetalle;
 import pe.edu.upeu.sysventas.service.*;
 import pe.edu.upeu.sysventas.utils.ConsultaDNI;
+import pe.edu.upeu.sysventas.utils.PrinterManager;
 
+import javax.print.PrintService;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -323,6 +331,74 @@ public class VentaController {
         }
         daoC.deleteCarAll(dniRuc.getText());
         listar();
+        try {
+            print(idX.getIdVenta());
+            jasperPrint= daoV.runReport(Long.parseLong(String.valueOf(idX.getIdVenta())));
+            Platform.runLater(() -> {
+                ReportAlert reportAlert=new ReportAlert(jasperPrint);
+                reportAlert.show();
+                //ReportDialog reportDialog = new ReportDialog(jasperPrint);
+                //reportDialog.show();
+            });
+        }catch (Exception e){
+            System.out.println("VER:"+e.getMessage());
+        }
+
     }
 
+    public void print(Long idv) {
+        Venta vt = daoV.findById(idv);
+        try {
+            PrinterManager printerManager = PrinterManager.getInstance();
+            PrintService printService = printerManager.getPrintService();
+            PrinterOutputStream printerOutputStream = new PrinterOutputStream(printService);
+            EscPos escpos = new EscPos(printerOutputStream);
+
+            Style titleStyle = new Style()
+                    .setJustification(EscPosConst.Justification.Center)
+                    .setBold(true)
+                    .setFontSize(Style.FontSize._2, Style.FontSize._2);
+            Style normal = new Style()
+                    .setJustification(EscPosConst.Justification.Left_Default);
+            Style center = new Style()
+                    .setJustification(EscPosConst.Justification.Center);
+            escpos.writeLF(titleStyle, "BOLETA DE VENTA");
+            escpos.writeLF(center, "Tienda Demo S.A.C.");
+            escpos.writeLF(center, "RUC: 12345678901");
+            escpos.writeLF(center, "Av. Principal 123 - Lima");
+            escpos.writeLF(center, "--------------------------------");
+            //Datos del cliente
+            escpos.writeLF(normal, "Cliente: " + vt.getCliente().getNombres());
+            escpos.writeLF(normal, "DNI: " + vt.getCliente().getDniruc());
+            escpos.writeLF(normal, "Fecha: " + vt.getFechaGener() + "");
+            escpos.writeLF(normal, "--------------------------------");
+            //Detalle
+            escpos.writeLF(normal, "Cant Descripción Importe");
+            //int x = 1;
+            for (VentaDetalle vd : vt.getVentaDetalles()) {
+                String punit = vd.getCantidad() + " " + vd.getProducto().getNombre() + " S/ " + vd.getSubtotal() + "";
+                escpos.writeLF(normal, punit);
+            }
+            escpos.writeLF(normal, "--------------------------------");
+            escpos.writeLF(normal, "TOTAL: S/" + vt.getPrecioTotal() + "");
+            escpos.writeLF(normal, "--------------------------------");
+            //Agregar QR con los datos principales
+            String qrData = "Boleta N°001-000123 | Total: S/ " + vt.getPrecioTotal() + " | Fecha: " + vt.getFechaGener();
+            QRCode qrCode = new QRCode()
+                    .setJustification(EscPosConst.Justification.Center)
+                    .setErrorCorrectionLevel(QRCode.QRErrorCorrectionLevel.QR_ECLEVEL_M_Default)
+                    .setModel(QRCode.QRModel._1_Default);
+            escpos.write(qrCode, qrData);
+            escpos.feed(2);
+            escpos.writeLF(center, "Gracias por su compra!");
+            escpos.feed(6);
+            //Corte total
+            escpos.cut(EscPos.CutMode.FULL);
+            escpos.close();
+            System.out.println("Boleta impresa correctamente.");
+            System.out.println("Impresión completada correctamente.");
+        } catch (IOException e) {
+            System.err.println("Error al inicializar la impresora: " + e.getMessage());
+        }
+    }
 }

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.edrastx.pos.controller.MainController" fx:id="rootPane">
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT" styleClass="top-bar">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+            <ImageView fitHeight="40" fitWidth="120">
+                <image>
+                    <Image url="@../images/logo.png"/>
+                </image>
+            </ImageView>
+            <Label text="EdrastxPOS" styleClass="top-title"/>
+            <Pane HBox.hgrow="ALWAYS"/>
+            <Label fx:id="lblUser" styleClass="top-user"/>
+            <Button text="Cerrar sesión" onAction="#logout"/>
+        </HBox>
+    </top>
+    <left>
+        <VBox spacing="10" styleClass="side-menu">
+            <padding>
+                <Insets top="20" right="10" bottom="20" left="10"/>
+            </padding>
+            <Button fx:id="btnSales" text="Ventas" onAction="#showSales" maxWidth="Infinity"/>
+            <Button fx:id="btnProducts" text="Productos" onAction="#showProducts" maxWidth="Infinity"/>
+            <Button fx:id="btnClients" text="Clientes" onAction="#showClients" maxWidth="Infinity"/>
+            <Button fx:id="btnReport" text="Reporte del día (Excel)" onAction="#exportReport" maxWidth="Infinity"/>
+        </VBox>
+    </left>
+    <center>
+        <StackPane/>
+    </center>
+</BorderPane>

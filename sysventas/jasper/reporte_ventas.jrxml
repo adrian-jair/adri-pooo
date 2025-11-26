@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.21.5.final using JasperReports Library version 6.21.5-74d586df47b25dbd05bd0957999819196e59934a  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporte_ventas" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="421d78d4-7cc1-401f-b1d3-3fbf7b0d8537">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="ConDB"/>
+	<parameter name="fechaI" class="java.lang.String"/>
+	<parameter name="fechaF" class="java.lang.String"/>
+	<parameter name="imagenurl" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+ c.nombres,
+ strftime('%d/%m/%Y %H:%M:%S', v.fecha_gener / 1000, 'unixepoch', 'localtime') AS fecha_formateada,
+ v.*
+FROM upeu_venta v
+ JOIN upeu_cliente c ON c.dniruc = v.dniruc
+WHERE date(v.fecha_gener / 1000, 'unixepoch', 'localtime')
+ BETWEEN date( $P{fechaI} )
+ AND date( $P{fechaF} )]]>
+	</queryString>
+	<field name="nombres" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="nombres"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombres"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="upeu_cliente"/>
+	</field>
+	<field name="fecha_formateada" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_formateada"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_formateada"/>
+	</field>
+	<field name="id_venta" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="id_venta"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_venta"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="upeu_venta"/>
+	</field>
+	<field name="fecha_gener" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="fecha_gener"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha_gener"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="upeu_venta"/>
+	</field>
+	<field name="igv" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="igv"/>
+		<property name="com.jaspersoft.studio.field.label" value="igv"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="upeu_venta"/>
+	</field>
+	<field name="num_doc" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="num_doc"/>
+		<property name="com.jaspersoft.studio.field.label" value="num_doc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="upeu_venta"/>
+	</field>
+	<field name="preciobase" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="preciobase"/>
+		<property name="com.jaspersoft.studio.field.label" value="preciobase"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="upeu_venta"/>
+	</field>
+	<field name="preciototal" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="preciototal"/>
+		<property name="com.jaspersoft.studio.field.label" value="preciototal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="upeu_venta"/>
+	</field>
+	<field name="serie" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="serie"/>
+		<property name="com.jaspersoft.studio.field.label" value="serie"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="upeu_venta"/>
+	</field>
+	<field name="tipo_doc" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="tipo_doc"/>
+		<property name="com.jaspersoft.studio.field.label" value="tipo_doc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="upeu_venta"/>
+	</field>
+	<field name="dniruc" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="dniruc"/>
+		<property name="com.jaspersoft.studio.field.label" value="dniruc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="upeu_venta"/>
+	</field>
+	<field name="id_usuario" class="java.lang.Object">
+		<property name="com.jaspersoft.studio.field.name" value="id_usuario"/>
+		<property name="com.jaspersoft.studio.field.label" value="id_usuario"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="upeu_venta"/>
+	</field>
+	<variable name="preciobase1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{preciobase}]]></variableExpression>
+	</variable>
+	<variable name="igv1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{igv}]]></variableExpression>
+	</variable>
+	<variable name="preciototal1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{preciototal}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="112" splitType="Stretch">
+			<image>
+				<reportElement x="40" y="10" width="93" height="50" uuid="da6bd5c9-4c6c-4d16-809e-4eb2c5f4fc7b"/>
+				<imageExpression><![CDATA[$P{imagenurl}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="210" y="40" width="110" height="24" uuid="cd160555-4f14-4866-8f14-537627f1cf65"/>
+				<textElement>
+					<font fontName="Arial Black"/>
+				</textElement>
+				<text><![CDATA[Reporte de Ventas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="81" width="100" height="30" uuid="6146df6d-3e42-4297-b7f6-8ef5db5c81ee"/>
+				<text><![CDATA[Entre]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="120" y="82" width="100" height="30" uuid="aae75394-27b9-4e4c-8113-6d2806d3c5cd"/>
+				<textFieldExpression><![CDATA[$P{fechaI}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="82" width="100" height="30" uuid="ff5b19b1-6449-46f4-9837-80786f113108"/>
+				<textFieldExpression><![CDATA[$P{fechaF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="0" width="83" height="20" uuid="de0e2208-49eb-44b2-99ca-235261d21c60">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6fdee151-88d4-430f-8c30-47d1031f1f7f"/>
+				</reportElement>
+				<text><![CDATA[DNI/RUC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="113" y="0" width="140" height="20" uuid="87d37b14-dba5-45e7-bb91-58de99f1e5a2">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a66a3cf-af34-4544-b091-132932c66406"/>
+				</reportElement>
+				<text><![CDATA[Nombre/Razon Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="253" y="0" width="110" height="20" uuid="6d213010-0e9b-4024-ba3d-472b0767f425">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6cc716c7-df0e-4e21-badd-9e6c3f5dcda8"/>
+				</reportElement>
+				<text><![CDATA[Precio Base]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="0" width="100" height="20" uuid="bb09673b-4d6f-4aec-8b7e-6f49553acb95">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9187b389-c990-4c94-8f30-55e535e8c224"/>
+				</reportElement>
+				<text><![CDATA[IGV]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="463" y="0" width="100" height="20" uuid="edca478b-5d23-48e5-9afe-1d0082861909">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cfa46249-6a37-4862-b6ec-cc790456bcf4"/>
+				</reportElement>
+				<text><![CDATA[Precio Total]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement x="30" y="0" width="83" height="20" uuid="2a262e24-bc3f-494e-8a91-d160a06136e7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6fdee151-88d4-430f-8c30-47d1031f1f7f"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{dniruc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="113" y="0" width="140" height="20" uuid="86e1e5fc-407c-42cb-974d-dab3db1ee571">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9a66a3cf-af34-4544-b091-132932c66406"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="253" y="0" width="110" height="20" uuid="5e5c9fd9-c132-4200-8830-b8edd647d797">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6cc716c7-df0e-4e21-badd-9e6c3f5dcda8"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{preciobase}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="363" y="0" width="100" height="20" uuid="6a5fddf4-0570-4a65-a8a3-2dc15a553a18">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9187b389-c990-4c94-8f30-55e535e8c224"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{igv}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="460" y="0" width="100" height="20" uuid="db76544d-2614-4225-b961-798047f2465d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="cfa46249-6a37-4862-b6ec-cc790456bcf4"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{preciototal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="89" splitType="Stretch">
+			<line>
+				<reportElement x="360" y="0" width="143" height="1" uuid="6bc2f009-a175-4ddb-8578-0ce95e9247ed"/>
+			</line>
+			<textField>
+				<reportElement x="440" y="0" width="100" height="20" uuid="84fa428c-5412-43a0-a52e-3cb31fbd633f"/>
+				<textFieldExpression><![CDATA[$V{preciobase1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="0" width="100" height="20" uuid="68d42e69-d986-43f4-bb74-5bf74b73bcc6"/>
+				<text><![CDATA[Base Imponible S/.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="20" width="100" height="20" uuid="0b954832-7e15-427c-9f0f-95e22da3ea45"/>
+				<text><![CDATA[IGV  S/.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="20" width="100" height="20" uuid="5d5e3d2d-20fc-476f-8098-e1aa6d1db2d3"/>
+				<textFieldExpression><![CDATA[$V{igv1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="340" y="40" width="100" height="20" uuid="ea2d79a6-6d02-441d-8aff-bcc209e6b169"/>
+				<text><![CDATA[Precio Total S/.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="440" y="40" width="100" height="20" uuid="60c3cafc-621c-4717-8ae9-d10acb3b5236"/>
+				<textFieldExpression><![CDATA[$V{preciototal1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

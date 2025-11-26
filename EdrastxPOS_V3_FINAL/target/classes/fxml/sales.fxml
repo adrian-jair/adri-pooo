@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml" fx:controller="com.edrastx.pos.controller.SalesController" spacing="8">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    <HBox spacing="10">
+        <Label text="Cliente guardado"/>
+        <ComboBox fx:id="cbClient" prefWidth="220"/>
+        <Label text="o nombre libre"/>
+        <TextField fx:id="txtCustomerName" promptText="Nombre cliente" prefWidth="220"/>
+    </HBox>
+    <HBox spacing="10">
+        <TextField fx:id="txtProductCode" promptText="Código producto" HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="txtQuantity" promptText="Cantidad" prefWidth="80"/>
+        <Button fx:id="btnAdd" text="Agregar" onAction="#onAdd"/>
+    </HBox>
+    <TableView fx:id="tblCart" prefHeight="260">
+        <columns>
+            <TableColumn fx:id="colQty" text="Cant." prefWidth="60"/>
+            <TableColumn fx:id="colProduct" text="Producto" prefWidth="220"/>
+            <TableColumn fx:id="colPrice" text="Precio" prefWidth="100"/>
+            <TableColumn fx:id="colSubtotal" text="Subtotal" prefWidth="120"/>
+        </columns>
+    </TableView>
+    <HBox spacing="10">
+        <Label fx:id="lblTotal" text="Total: 0.00"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+        <Button fx:id="btnRemove" text="Quitar" onAction="#onRemove"/>
+        <Button fx:id="btnClear" text="Limpiar" onAction="#onClear"/>
+        <Button fx:id="btnConfirm" text="Confirmar venta" onAction="#onConfirm"/>
+        <Button fx:id="btnTestPrint" text="Test impresión" onAction="#onTestPrint"/>
+    </HBox>
+</VBox>

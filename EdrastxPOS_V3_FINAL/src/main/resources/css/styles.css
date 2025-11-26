@@ -1,0 +1,102 @@
+.root {
+    -fx-background-color: #0E1217;
+    -fx-font-family: "Segoe UI", "Roboto", sans-serif;
+    -fx-text-fill: #E6E9EC;
+}
+
+.label {
+    -fx-text-fill: #E6E9EC;
+    -fx-font-size: 14px;
+}
+
+.text-field, .password-field, .combo-box {
+    -fx-background-color: #1A1F25;
+    -fx-border-color: #3A3F47;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 6;
+    -fx-text-fill: white;
+}
+
+.text-field:focused, .password-field:focused, .combo-box:focused {
+    -fx-border-color: #4A90E2;
+    -fx-background-color: #141A20;
+}
+
+.button {
+    -fx-background-color: linear-gradient(to bottom, #1F6FEB, #1955B9);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-background-radius: 8;
+    -fx-padding: 10;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.4), 6,0,0,2);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #2C7DFF, #1F6FEB);
+}
+
+.table-view {
+    -fx-background-color: #141820;
+    -fx-border-color: #2B313A;
+}
+
+.table-row-cell {
+    -fx-background-color: #141820;
+    -fx-text-fill: #E6E9EC;
+}
+
+.table-row-cell:hover {
+    -fx-background-color: #223045;
+}
+
+.table-view .column-header {
+    -fx-background-color: #1B212A;
+    -fx-text-fill: #A9B4BD;
+    -fx-font-weight: bold;
+}
+
+.top-bar {
+    -fx-background-color: #12171F;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 10,0,0,2);
+}
+
+.top-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #4A90E2;
+}
+
+.top-user {
+    -fx-font-size: 13px;
+    -fx-opacity: 0.7;
+}
+
+.side-menu {
+    -fx-background-color: #10141B;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 8,0,0,2);
+}
+
+.side-menu .button {
+    -fx-background-color: #16202B;
+    -fx-text-fill: #D3D9DE;
+    -fx-effect: none;
+}
+
+.side-menu .button:hover {
+    -fx-background-color: #1F6FEB;
+    -fx-text-fill: white;
+    -fx-effect: none;
+}
+
+.title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.error-label {
+    -fx-text-fill: #ff5c5c;
+}
